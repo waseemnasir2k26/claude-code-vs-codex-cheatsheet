@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Claude Code vs Codex — The Real Cheat Sheet | SkynetLabs</title>
+    <meta
+      name="description"
+      content="I tested Claude Code vs Codex on real client work. Final score 3–1. Here's exactly which AI to use for which job — design, video, automation, dev."
+    />
+    <meta
+      property="og:title"
+      content="Claude Code vs Codex — The Real Cheat Sheet"
+    />
+    <meta
+      property="og:description"
+      content="Which AI for which job. Tested on real work. Final score 3–1."
+    />
+    <meta property="og:type" content="article" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0f1c;
+        --panel: #111829;
+        --panel2: #0d1322;
+        --line: #1f2a40;
+        --ink: #eaf0fb;
+        --mut: #93a1bd;
+        --claude: #ef7a52;
+        --codex: #34d399;
+        --gold: #fbbf24;
+        --blue: #5b9dff;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body {
+        background: #05080f;
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+        line-height: 1.5;
+      }
+
+      /* screen wrapper */
+      .screenbar {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 22px 20px;
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        background: var(--blue);
+        color: #05080f;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 14px;
+        padding: 12px 22px;
+        border-radius: 10px;
+      }
+      .btn.alt {
+        background: #1c2740;
+        color: var(--ink);
+      }
+      .btn:hover {
+        opacity: 0.9;
+      }
+
+      /* the printable sheet — A4 portrait */
+      .page {
+        width: 794px;
+        min-height: 1123px;
+        margin: 0 auto 28px;
+        background: var(--bg);
+        position: relative;
+        overflow: hidden;
+        background-image:
+          radial-gradient(
+            900px 500px at 80% -10%,
+            rgba(239, 122, 82, 0.1),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 500px at -10% 110%,
+            rgba(52, 211, 153, 0.1),
+            transparent 60%
+          );
+      }
+      .pad {
+        padding: 54px 56px;
+      }
+
+      /* header */
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 22px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+      }
+      .logo {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--claude), var(--codex));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Archivo Black";
+        color: #05080f;
+        font-size: 16px;
+      }
+      .brand small {
+        display: block;
+        font-weight: 500;
+        color: var(--mut);
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      .score-pill {
+        font-family: "JetBrains Mono";
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--gold);
+        border: 1px solid #4a3c12;
+        background: #1c1708;
+        padding: 7px 13px;
+        border-radius: 999px;
+      }
+
+      .kicker {
+        font-family: "JetBrains Mono";
+        color: var(--codex);
+        font-size: 13px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin: 30px 0 10px;
+      }
+      h1 {
+        font-family: "Archivo Black";
+        font-size: 52px;
+        line-height: 0.98;
+        letter-spacing: -1px;
+      }
+      h1 .c {
+        color: var(--claude);
+      }
+      h1 .x {
+        color: var(--codex);
+      }
+      h1 .vs {
+        color: var(--ink);
+        opacity: 0.5;
+        font-size: 34px;
+      }
+      .dek {
+        color: var(--mut);
+        font-size: 16px;
+        margin-top: 14px;
+        max-width: 600px;
+      }
+
+      /* scoreboard strip */
+      .board {
+        display: flex;
+        gap: 14px;
+        margin: 26px 0 6px;
+      }
+      .bcell {
+        flex: 1;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px 16px;
+        text-align: center;
+      }
+      .bcell .n {
+        font-family: "Archivo Black";
+        font-size: 30px;
+      }
+      .bcell.win .n {
+        color: var(--claude);
+      }
+      .bcell.lose .n {
+        color: var(--codex);
+      }
+      .bcell .l {
+        font-size: 11px;
+        color: var(--mut);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-top: 3px;
+      }
+
+      /* section */
+      .sec-h {
+        font-family: "Archivo Black";
+        font-size: 20px;
+        margin: 34px 0 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .sec-h:before {
+        content: "";
+        width: 22px;
+        height: 5px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, var(--claude), var(--codex));
+      }
+
+      /* verdict rows */
+      .row {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px 18px;
+        margin-bottom: 12px;
+        display: grid;
+        grid-template-columns: 170px 1fr 132px;
+        gap: 16px;
+        align-items: center;
+      }
+      .cat {
+        font-weight: 800;
+        font-size: 17px;
+      }
+      .cat small {
+        display: block;
+        color: var(--mut);
+        font-weight: 500;
+        font-size: 12px;
+        margin-top: 2px;
+      }
+      .bars {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .bar {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .bar .tag {
+        width: 54px;
+        color: var(--mut);
+      }
+      .track {
+        flex: 1;
+        height: 11px;
+        background: #0a1020;
+        border-radius: 99px;
+        overflow: hidden;
+      }
+      .fill {
+        height: 100%;
+        border-radius: 99px;
+      }
+      .fill.c {
+        background: var(--claude);
+      }
+      .fill.x {
+        background: var(--codex);
+      }
+      .pct {
+        width: 34px;
+        text-align: right;
+      }
+      .verdict {
+        text-align: center;
+        font-family: "Archivo Black";
+        font-size: 14px;
+        padding: 9px 6px;
+        border-radius: 10px;
+      }
+      .verdict.c {
+        color: var(--claude);
+        background: rgba(239, 122, 82, 0.12);
+        border: 1px solid rgba(239, 122, 82, 0.35);
+      }
+      .verdict.x {
+        color: var(--codex);
+        background: rgba(52, 211, 153, 0.12);
+        border: 1px solid rgba(52, 211, 153, 0.35);
+      }
+      .verdict.t {
+        color: var(--gold);
+        background: rgba(251, 191, 36, 0.12);
+        border: 1px solid rgba(251, 191, 36, 0.35);
+      }
+
+      /* use-this columns */
+      .cols {
+        display: flex;
+        gap: 14px;
+      }
+      .col {
+        flex: 1;
+        background: var(--panel2);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px 18px;
+      }
+      .col h3 {
+        font-family: "Archivo Black";
+        font-size: 17px;
+        margin-bottom: 12px;
+      }
+      .col.c h3 {
+        color: var(--claude);
+      }
+      .col.x h3 {
+        color: var(--codex);
+      }
+      .col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .col li {
+        font-size: 13.5px;
+        color: #cdd7ea;
+        padding-left: 20px;
+        position: relative;
+      }
+      .col li:before {
+        content: "›";
+        position: absolute;
+        left: 4px;
+        font-weight: 800;
+      }
+      .col.c li:before {
+        color: var(--claude);
+      }
+      .col.x li:before {
+        color: var(--codex);
+      }
+
+      /* rule of thumb */
+      .thumb {
+        margin-top: 18px;
+        background: linear-gradient(135deg, #10182b, #0c1322);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px 20px;
+      }
+      .thumb .q {
+        font-family: "Archivo Black";
+        font-size: 16px;
+        color: var(--ink);
+      }
+      .thumb p {
+        color: var(--mut);
+        font-size: 13.5px;
+        margin-top: 6px;
+      }
+      .thumb b {
+        color: var(--codex);
+      }
+      .thumb i {
+        color: var(--claude);
+        font-style: normal;
+      }
+
+      /* footer cta */
+      .cta {
+        margin-top: 26px;
+        border-top: 1px solid var(--line);
+        padding-top: 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+      .cta .big {
+        font-family: "Archivo Black";
+        font-size: 18px;
+      }
+      .cta .sm {
+        color: var(--mut);
+        font-size: 13px;
+        margin-top: 3px;
+      }
+      .cta .stamp {
+        font-family: "JetBrains Mono";
+        font-size: 12px;
+        color: var(--mut);
+        text-align: right;
+      }
+      .handle {
+        color: var(--blue);
+        font-weight: 800;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      @media print {
+        .screenbar {
+          display: none;
+        }
+        body {
+          background: #fff;
+        }
+        .page {
+          margin: 0;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="screenbar">
+      <a class="btn" href="Claude-Code-vs-Codex-Cheatsheet.pdf" download
+        >⬇ Download PDF</a
+      >
+      <a
+        class="btn alt"
+        href="https://github.com/waseemnasir2k26/claude-code-vs-codex-cheatsheet"
+        target="_blank"
+        >View on GitHub</a
+      >
+    </div>
+
+    <div class="page">
+      <div class="pad">
+        <div class="top">
+          <div class="brand">
+            <div class="logo">S</div>
+            <div>
+              SkynetLabs<small>Waseem Nasir · AI &amp; Automation</small>
+            </div>
+          </div>
+          <div class="score-pill">FINAL · CLAUDE CODE 3 — 1 CODEX</div>
+        </div>
+
+        <div class="kicker">The Real Cheat Sheet</div>
+        <h1>
+          <span class="c">CLAUDE CODE</span> <span class="vs">vs</span>
+          <span class="x">CODEX</span>
+        </h1>
+        <div class="dek">
+          I gave both the same brain and ran them on real client work — not
+          benchmarks. Here's exactly which one to reach for, job by job.
+        </div>
+
+        <div class="board">
+          <div class="bcell win">
+            <div class="n">3</div>
+            <div class="l">Claude Code wins</div>
+          </div>
+          <div class="bcell">
+            <div class="n" style="color: var(--gold)">1</div>
+            <div class="l">Tie</div>
+          </div>
+          <div class="bcell lose">
+            <div class="n">1</div>
+            <div class="l">Codex wins</div>
+          </div>
+        </div>
+
+        <div class="sec-h">The Verdict — round by round</div>
+
+        <div class="row">
+          <div class="cat">
+            Graphic Design<small>logos, image gen, creative</small>
+          </div>
+          <div class="bars">
+            <div class="bar">
+              <span class="tag">Claude</span>
+              <div class="track">
+                <div class="fill c" style="width: 40%"></div>
+              </div>
+              <span class="pct">40%</span>
+            </div>
+            <div class="bar">
+              <span class="tag">Codex</span>
+              <div class="track">
+                <div class="fill x" style="width: 90%"></div>
+              </div>
+              <span class="pct">90%</span>
+            </div>
+          </div>
+          <div class="verdict x">CODEX 🏆</div>
+        </div>
+
+        <div class="row">
+          <div class="cat">
+            Video Editing<small>clean, watchable cuts</small>
+          </div>
+          <div class="bars">
+            <div class="bar">
+              <span class="tag">Claude</span>
+              <div class="track">
+                <div class="fill c" style="width: 85%"></div>
+              </div>
+              <span class="pct">85%</span>
+            </div>
+            <div class="bar">
+              <span class="tag">Codex</span>
+              <div class="track">
+                <div class="fill x" style="width: 85%"></div>
+              </div>
+              <span class="pct">85%</span>
+            </div>
+          </div>
+          <div class="verdict t">TIE 🤝</div>
+        </div>
+
+        <div class="row">
+          <div class="cat">
+            Automation<small>n8n · GoHighLevel · MCP</small>
+          </div>
+          <div class="bars">
+            <div class="bar">
+              <span class="tag">Claude</span>
+              <div class="track">
+                <div class="fill c" style="width: 92%"></div>
+              </div>
+              <span class="pct">92%</span>
+            </div>
+            <div class="bar">
+              <span class="tag">Codex</span>
+              <div class="track">
+                <div class="fill x" style="width: 68%"></div>
+              </div>
+              <span class="pct">68%</span>
+            </div>
+          </div>
+          <div class="verdict c">CLAUDE 🏆</div>
+        </div>
+
+        <div class="row">
+          <div class="cat">Development<small>systems, full builds</small></div>
+          <div class="bars">
+            <div class="bar">
+              <span class="tag">Claude</span>
+              <div class="track">
+                <div class="fill c" style="width: 94%"></div>
+              </div>
+              <span class="pct">94%</span>
+            </div>
+            <div class="bar">
+              <span class="tag">Codex</span>
+              <div class="track">
+                <div class="fill x" style="width: 72%"></div>
+              </div>
+              <span class="pct">72%</span>
+            </div>
+          </div>
+          <div class="verdict c">CLAUDE 🏆</div>
+        </div>
+
+        <div class="thumb">
+          <div class="q">One rule to remember</div>
+          <p>
+            Use <b>Codex</b> for quick creative passes (design, image models).
+            Use <i>Claude Code</i> for systems, automation, and dev. Don't pick
+            one — route the task to whoever's strongest.
+          </p>
+        </div>
+
+        <div class="sec-h">Which one to open — by job</div>
+        <div class="cols">
+          <div class="col c">
+            <h3>Reach for Claude Code</h3>
+            <ul>
+              <li>Multi-file builds &amp; refactors</li>
+              <li>Automations: n8n, GoHighLevel, MCP</li>
+              <li>Wiring APIs &amp; backend logic</li>
+              <li>Long tasks that need to hold context</li>
+              <li>Anything you'll ship to a client</li>
+            </ul>
+          </div>
+          <div class="col x">
+            <h3>Reach for Codex</h3>
+            <ul>
+              <li>Graphic design &amp; image generation</li>
+              <li>Fast one-off creative drafts</li>
+              <li>Quick scripts &amp; snippets</li>
+              <li>Brainstorming visual concepts</li>
+              <li>When you want speed over depth</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cta">
+          <div>
+            <div class="big">Want builds like this for your business?</div>
+            <div class="sm">
+              AI agents, automations &amp; sites — DM
+              <span class="handle">@SkynetLabs</span> · comment
+              <b style="color: var(--gold)">STACK</b> for more.
+            </div>
+          </div>
+          <div class="stamp">skynetlabs<br />v1 · 2026</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
