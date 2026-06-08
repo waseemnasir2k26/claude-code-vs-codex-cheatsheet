@@ -13,6 +13,18 @@ I gave **Claude Code** and **Codex** the same brain and ran them on real client 
 
 **One rule:** Use Codex for quick creative passes. Use Claude Code for systems, automation, and dev. Don't pick one — route the task to whoever's strongest.
 
+## 🎬 Bonus: train Claude Code to edit YOUR videos
+
+The PDF is now a **5-page playbook**, not just a scorecard:
+
+1. The verdict (who won, round by round)
+2. The system + one-time setup (ffmpeg, project folder, `CLAUDE.md`)
+3. The 7-step editing pipeline
+4. Copy-paste **master prompt** + `CLAUDE.md` style rules + a reusable **`/video-edit` skill**
+5. **ffmpeg recipes** (crop, grade, captions, sidechain-duck, render) + the traps that waste hours
+
+Everything is real, copy-pasteable, and $0 to run.
+
 ## 📄 Get the cheat sheet
 
 - **[View it live](https://waseemnasir2k26.github.io/claude-code-vs-codex-cheatsheet/)**

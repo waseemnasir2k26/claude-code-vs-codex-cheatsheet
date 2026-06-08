@@ -3,22 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Claude Code vs Codex — The Real Cheat Sheet | SkynetLabs</title>
+    <title>
+      Claude Code vs Codex — The Real Cheat Sheet + Video-Editing Playbook |
+      SkynetLabs
+    </title>
     <meta
       name="description"
-      content="I tested Claude Code vs Codex on real client work. Final score 3–1. Here's exactly which AI to use for which job — design, video, automation, dev."
+      content="Tested Claude Code vs Codex on real client work (3–1). Plus the full playbook to train Claude Code to edit your videos — workflow, master prompt, ffmpeg recipes, a reusable skill."
     />
     <meta
       property="og:title"
-      content="Claude Code vs Codex — The Real Cheat Sheet"
+      content="Claude Code vs Codex — Cheat Sheet + Video-Editing Playbook"
     />
     <meta
       property="og:description"
-      content="Which AI for which job. Tested on real work. Final score 3–1."
+      content="Which AI for which job, and how to make Claude Code edit your videos. Real prompts + ffmpeg recipes."
     />
     <meta property="og:type" content="article" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -50,7 +53,6 @@
         line-height: 1.5;
       }
 
-      /* screen wrapper */
       .screenbar {
         max-width: 880px;
         margin: 0 auto;
@@ -77,7 +79,6 @@
         opacity: 0.9;
       }
 
-      /* the printable sheet — A4 portrait */
       .page {
         width: 794px;
         min-height: 1123px;
@@ -98,16 +99,15 @@
           );
       }
       .pad {
-        padding: 54px 56px;
+        padding: 52px 54px;
       }
 
-      /* header */
       .top {
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
         border-bottom: 1px solid var(--line);
-        padding-bottom: 22px;
+        padding-bottom: 18px;
       }
       .brand {
         display: flex;
@@ -139,12 +139,17 @@
       .score-pill {
         font-family: "JetBrains Mono";
         font-weight: 700;
-        font-size: 13px;
+        font-size: 12px;
         color: var(--gold);
         border: 1px solid #4a3c12;
         background: #1c1708;
-        padding: 7px 13px;
+        padding: 7px 12px;
         border-radius: 999px;
+      }
+      .pg {
+        font-family: "JetBrains Mono";
+        font-size: 11px;
+        color: var(--mut);
       }
 
       .kicker {
@@ -153,11 +158,11 @@
         font-size: 13px;
         letter-spacing: 3px;
         text-transform: uppercase;
-        margin: 30px 0 10px;
+        margin: 26px 0 10px;
       }
       h1 {
         font-family: "Archivo Black";
-        font-size: 52px;
+        font-size: 50px;
         line-height: 0.98;
         letter-spacing: -1px;
       }
@@ -170,32 +175,31 @@
       h1 .vs {
         color: var(--ink);
         opacity: 0.5;
-        font-size: 34px;
+        font-size: 32px;
       }
       .dek {
         color: var(--mut);
-        font-size: 16px;
+        font-size: 15.5px;
         margin-top: 14px;
-        max-width: 600px;
+        max-width: 610px;
       }
 
-      /* scoreboard strip */
       .board {
         display: flex;
         gap: 14px;
-        margin: 26px 0 6px;
+        margin: 24px 0 6px;
       }
       .bcell {
         flex: 1;
         background: var(--panel);
         border: 1px solid var(--line);
         border-radius: 14px;
-        padding: 16px 16px;
+        padding: 15px;
         text-align: center;
       }
       .bcell .n {
         font-family: "Archivo Black";
-        font-size: 30px;
+        font-size: 28px;
       }
       .bcell.win .n {
         color: var(--claude);
@@ -211,11 +215,10 @@
         margin-top: 3px;
       }
 
-      /* section */
       .sec-h {
         font-family: "Archivo Black";
-        font-size: 20px;
-        margin: 34px 0 16px;
+        font-size: 21px;
+        margin: 30px 0 15px;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -227,49 +230,53 @@
         border-radius: 3px;
         background: linear-gradient(90deg, var(--claude), var(--codex));
       }
+      .sec-h.sm {
+        font-size: 17px;
+        margin: 24px 0 12px;
+      }
 
       /* verdict rows */
       .row {
         background: var(--panel);
         border: 1px solid var(--line);
         border-radius: 14px;
-        padding: 16px 18px;
-        margin-bottom: 12px;
+        padding: 15px 18px;
+        margin-bottom: 11px;
         display: grid;
-        grid-template-columns: 170px 1fr 132px;
+        grid-template-columns: 165px 1fr 122px;
         gap: 16px;
         align-items: center;
       }
       .cat {
         font-weight: 800;
-        font-size: 17px;
+        font-size: 16px;
       }
       .cat small {
         display: block;
         color: var(--mut);
         font-weight: 500;
-        font-size: 12px;
+        font-size: 11.5px;
         margin-top: 2px;
       }
       .bars {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 7px;
       }
       .bar {
         display: flex;
         align-items: center;
         gap: 9px;
-        font-size: 12px;
+        font-size: 11.5px;
         font-weight: 700;
       }
       .bar .tag {
-        width: 54px;
+        width: 50px;
         color: var(--mut);
       }
       .track {
         flex: 1;
-        height: 11px;
+        height: 10px;
         background: #0a1020;
         border-radius: 99px;
         overflow: hidden;
@@ -285,14 +292,14 @@
         background: var(--codex);
       }
       .pct {
-        width: 34px;
+        width: 32px;
         text-align: right;
       }
       .verdict {
         text-align: center;
         font-family: "Archivo Black";
-        font-size: 14px;
-        padding: 9px 6px;
+        font-size: 13px;
+        padding: 8px 6px;
         border-radius: 10px;
       }
       .verdict.c {
@@ -311,7 +318,101 @@
         border: 1px solid rgba(251, 191, 36, 0.35);
       }
 
-      /* use-this columns */
+      .lead {
+        color: var(--mut);
+        font-size: 14.5px;
+        margin-bottom: 6px;
+        max-width: 640px;
+      }
+
+      /* steps */
+      .step {
+        display: flex;
+        gap: 15px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        padding: 15px 17px;
+        margin-bottom: 11px;
+      }
+      .step .num {
+        flex: none;
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        background: linear-gradient(135deg, var(--claude), var(--codex));
+        color: #05080f;
+        font-family: "Archivo Black";
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .step .b h4 {
+        font-size: 15.5px;
+        font-weight: 800;
+        margin-bottom: 3px;
+      }
+      .step .b p {
+        color: var(--mut);
+        font-size: 13px;
+      }
+      .step .b code {
+        font-family: "JetBrains Mono";
+        font-size: 12px;
+        color: var(--codex);
+        background: #0a1424;
+        padding: 1px 6px;
+        border-radius: 5px;
+      }
+
+      /* code blocks */
+      .code {
+        background: #070b14;
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--codex);
+        border-radius: 10px;
+        padding: 13px 15px;
+        margin: 10px 0 14px;
+        font-family: "JetBrains Mono";
+        font-size: 11.5px;
+        line-height: 1.65;
+        color: #cfe3ff;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .code .c1 {
+        color: #5d7290;
+      } /* comment */
+      .code .k {
+        color: var(--gold);
+      } /* keyword */
+      .code .s {
+        color: var(--codex);
+      } /* string/flag */
+      .code.claude {
+        border-left-color: var(--claude);
+      }
+      .prompt {
+        background: #0c1322;
+        border: 1px dashed #2c3c5a;
+        border-radius: 12px;
+        padding: 15px 17px;
+        margin: 12px 0;
+        font-size: 13.5px;
+        color: #dbe6f7;
+      }
+      .prompt .lbl {
+        font-family: "JetBrains Mono";
+        font-size: 10.5px;
+        letter-spacing: 2px;
+        color: var(--gold);
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      /* two-col lists */
       .cols {
         display: flex;
         gap: 14px;
@@ -321,12 +422,12 @@
         background: var(--panel2);
         border: 1px solid var(--line);
         border-radius: 14px;
-        padding: 18px 18px;
+        padding: 16px 17px;
       }
       .col h3 {
         font-family: "Archivo Black";
-        font-size: 17px;
-        margin-bottom: 12px;
+        font-size: 16px;
+        margin-bottom: 11px;
       }
       .col.c h3 {
         color: var(--claude);
@@ -338,18 +439,18 @@
         list-style: none;
         display: flex;
         flex-direction: column;
-        gap: 9px;
+        gap: 8px;
       }
       .col li {
-        font-size: 13.5px;
+        font-size: 13px;
         color: #cdd7ea;
-        padding-left: 20px;
+        padding-left: 18px;
         position: relative;
       }
       .col li:before {
         content: "›";
         position: absolute;
-        left: 4px;
+        left: 3px;
         font-weight: 800;
       }
       .col.c li:before {
@@ -359,37 +460,74 @@
         color: var(--codex);
       }
 
-      /* rule of thumb */
-      .thumb {
-        margin-top: 18px;
+      /* gotcha table */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 6px;
+        font-size: 12.5px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      th {
+        font-family: "JetBrains Mono";
+        font-size: 10.5px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--mut);
+      }
+      td b {
+        color: var(--gold);
+      }
+      td code {
+        font-family: "JetBrains Mono";
+        font-size: 11.5px;
+        color: var(--codex);
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      .trap {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        padding: 6px 14px;
+        margin-top: 8px;
+      }
+
+      .callout {
+        margin-top: 16px;
         background: linear-gradient(135deg, #10182b, #0c1322);
         border: 1px solid var(--line);
         border-radius: 14px;
-        padding: 18px 20px;
+        padding: 16px 18px;
       }
-      .thumb .q {
+      .callout .q {
         font-family: "Archivo Black";
-        font-size: 16px;
-        color: var(--ink);
+        font-size: 15px;
       }
-      .thumb p {
+      .callout p {
         color: var(--mut);
         font-size: 13.5px;
-        margin-top: 6px;
+        margin-top: 5px;
       }
-      .thumb b {
+      .callout b {
         color: var(--codex);
       }
-      .thumb i {
+      .callout i {
         color: var(--claude);
         font-style: normal;
       }
 
-      /* footer cta */
       .cta {
-        margin-top: 26px;
+        margin-top: 24px;
         border-top: 1px solid var(--line);
-        padding-top: 22px;
+        padding-top: 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -397,7 +535,7 @@
       }
       .cta .big {
         font-family: "Archivo Black";
-        font-size: 18px;
+        font-size: 17px;
       }
       .cta .sm {
         color: var(--mut);
@@ -406,7 +544,7 @@
       }
       .cta .stamp {
         font-family: "JetBrains Mono";
-        font-size: 12px;
+        font-size: 11px;
         color: var(--mut);
         text-align: right;
       }
@@ -429,6 +567,7 @@
         .page {
           margin: 0;
           box-shadow: none;
+          break-after: page;
         }
       }
     </style>
@@ -446,6 +585,7 @@
       >
     </div>
 
+    <!-- ===================== PAGE 1 — VERDICT ===================== -->
     <div class="page">
       <div class="pad">
         <div class="top">
@@ -458,14 +598,16 @@
           <div class="score-pill">FINAL · CLAUDE CODE 3 — 1 CODEX</div>
         </div>
 
-        <div class="kicker">The Real Cheat Sheet</div>
+        <div class="kicker">The Real Cheat Sheet + Playbook</div>
         <h1>
           <span class="c">CLAUDE CODE</span> <span class="vs">vs</span>
           <span class="x">CODEX</span>
         </h1>
         <div class="dek">
           I gave both the same brain and ran them on real client work — not
-          benchmarks. Here's exactly which one to reach for, job by job.
+          benchmarks. Page 1 is who won. The rest is how to make
+          <b style="color: var(--claude)">Claude Code edit your videos</b> the
+          same way I do.
         </div>
 
         <div class="board">
@@ -507,7 +649,6 @@
           </div>
           <div class="verdict x">CODEX 🏆</div>
         </div>
-
         <div class="row">
           <div class="cat">
             Video Editing<small>clean, watchable cuts</small>
@@ -530,7 +671,6 @@
           </div>
           <div class="verdict t">TIE 🤝</div>
         </div>
-
         <div class="row">
           <div class="cat">
             Automation<small>n8n · GoHighLevel · MCP</small>
@@ -553,7 +693,6 @@
           </div>
           <div class="verdict c">CLAUDE 🏆</div>
         </div>
-
         <div class="row">
           <div class="cat">Development<small>systems, full builds</small></div>
           <div class="bars">
@@ -575,24 +714,413 @@
           <div class="verdict c">CLAUDE 🏆</div>
         </div>
 
-        <div class="thumb">
+        <div class="callout">
           <div class="q">One rule to remember</div>
           <p>
             Use <b>Codex</b> for quick creative passes (design, image models).
-            Use <i>Claude Code</i> for systems, automation, and dev. Don't pick
-            one — route the task to whoever's strongest.
+            Use <i>Claude Code</i> for systems, automation, dev — and for
+            driving a real video pipeline. Don't pick one; route the task to
+            whoever's strongest.
           </p>
         </div>
 
-        <div class="sec-h">Which one to open — by job</div>
+        <div class="cta">
+          <div>
+            <div class="big">Tested on real work, not benchmarks.</div>
+            <div class="sm">
+              The next 4 pages = the exact system. Built by
+              <span class="handle">@SkynetLabs</span>.
+            </div>
+          </div>
+          <div class="stamp">page 1 / 5</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PAGE 2 — THE SYSTEM / SETUP ===================== -->
+    <div class="page">
+      <div class="pad">
+        <div class="top">
+          <div class="brand">
+            <div class="logo">S</div>
+            <div>SkynetLabs<small>Video-Editing Playbook</small></div>
+          </div>
+          <div class="pg">Train Claude Code to edit video</div>
+        </div>
+
+        <div class="sec-h">The big idea</div>
+        <p class="lead">
+          Claude Code isn't a video editor with buttons. It's an
+          <b style="color: var(--ink)">AI engineer that drives the tools</b> —
+          mainly <b style="color: var(--codex)">ffmpeg</b> — from plain-English
+          instructions. You give it footage + a brief; it writes and runs the
+          commands, checks the frames, and fixes its own mistakes. That's why it
+          ties a dedicated editor on output and beats it on
+          <b style="color: var(--ink)">repeatability</b>: once it works, it runs
+          the same way every time.
+        </p>
+
+        <div class="sec-h sm">What you need (one-time setup)</div>
+        <div class="code">
+          <span class="c1"># 1. Claude Code (the CLI)</span> npm install -g
+          <span class="s">@anthropic-ai/claude-code</span>
+
+          <span class="c1"># 2. ffmpeg — the actual editing engine</span>
+          <span class="k">winget</span> install ffmpeg
+          <span class="c1"># Windows</span> <span class="k">brew</span> install
+          ffmpeg <span class="c1"># macOS</span>
+
+          <span class="c1"
+            ># 3. (optional) Whisper for auto-captions, ElevenLabs key for AI
+            voiceover</span
+          >
+          <span class="k">pip</span> install openai-whisper
+        </div>
+
+        <div class="sec-h sm">Set up the project folder</div>
+        <p class="lead">
+          Claude Code works best with a clean, predictable folder. Drop this
+          structure in and it always knows where things are:
+        </p>
+        <div class="code">
+          <span class="k">my-edit/</span> ├─ <span class="s">raw/</span>
+          <span class="c1"># original clips go here</span> ├─
+          <span class="s">assets/</span>
+          <span class="c1"># logos, music, fonts, overlay PNGs</span> ├─
+          <span class="s">out/</span>
+          <span class="c1"># rendered exports</span> ├─
+          <span class="s">captions.ass</span>
+          <span class="c1"># subtitle file (auto-made from whisper)</span> └─
+          <span class="s">CLAUDE.md</span>
+          <span class="c1"># your editing rules — read every session</span>
+        </div>
+
+        <div class="callout">
+          <div class="q">The secret: CLAUDE.md is your editor's brain</div>
+          <p>
+            Put your <i>style rules</i> in a
+            <code
+              style="
+                font-family: &quot;JetBrains Mono&quot;;
+                color: var(--codex);
+              "
+              >CLAUDE.md</code
+            >
+            file in the project. Claude reads it automatically every time. This
+            is how you "train" it — facts that are always true (export specs,
+            brand colours, your hooks). Page 4 has a ready-to-paste version.
+          </p>
+        </div>
+
+        <div class="cta">
+          <div>
+            <div class="big">Setup once → edit forever.</div>
+            <div class="sm">
+              Next page: the 7-step editing pipeline Claude runs.
+            </div>
+          </div>
+          <div class="stamp">page 2 / 5</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PAGE 3 — THE WORKFLOW ===================== -->
+    <div class="page">
+      <div class="pad">
+        <div class="top">
+          <div class="brand">
+            <div class="logo">S</div>
+            <div>SkynetLabs<small>The 7-Step Pipeline</small></div>
+          </div>
+          <div class="pg">How the edit actually happens</div>
+        </div>
+
+        <div class="sec-h">The workflow — what to ask, in order</div>
+
+        <div class="step">
+          <div class="num">1</div>
+          <div class="b">
+            <h4>Brief the edit</h4>
+            <p>
+              Tell it the goal, platform, and vibe.
+              <code
+                >"Cut raw/talk.mp4 into a 9:16 reel for TikTok, punchy, captions
+                on, 30–45s."</code
+              >
+            </p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <div class="b">
+            <h4>Transcribe &amp; find the cuts</h4>
+            <p>
+              Whisper makes a transcript + <code>captions.ass</code>. Claude
+              reads it to drop dead air and find the strongest 30 seconds.
+            </p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <div class="b">
+            <h4>Frame &amp; crop (face-safe)</h4>
+            <p>
+              Reframe to 9:16. Keep the speaker off-centre so overlays have
+              room. Never crop through the face — this is the #1 rule.
+            </p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <div class="b">
+            <h4>Grade the colour</h4>
+            <p>
+              One pass: lift contrast + saturation, warm the highlights. Makes
+              phone footage look graded, not flat.
+            </p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">5</div>
+          <div class="b">
+            <h4>Overlays &amp; titles</h4>
+            <p>
+              Burn captions, hook card, scorecards, tool chips (n8n / GHL /
+              MCP). Use PNG overlays, not alpha video (see gotchas).
+            </p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">6</div>
+          <div class="b">
+            <h4>Audio: voiceover + ducked music</h4>
+            <p>
+              Optional ElevenLabs VO. Sidechain-duck the music under the voice
+              so every word is clear.
+            </p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">7</div>
+          <div class="b">
+            <h4>Render + QA frame-by-frame</h4>
+            <p>
+              Export, then have Claude pull sample frames and check: face never
+              cut, captions in sync, no black frames. Fix, re-render.
+            </p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="q">Why this beats "do it all in one prompt"</div>
+          <p>
+            Each step is checkable. Claude verifies its own output between steps
+            and self-corrects — that's the part a human editor can't do at 2am,
+            and it's why the result is <b>consistent</b> across 20 videos, not
+            just one lucky render.
+          </p>
+        </div>
+
+        <div class="cta">
+          <div>
+            <div class="big">Seven steps. Every video. Same quality.</div>
+            <div class="sm">
+              Next: the master prompt + skill that runs all of it.
+            </div>
+          </div>
+          <div class="stamp">page 3 / 5</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PAGE 4 — PROMPT + SKILL ===================== -->
+    <div class="page">
+      <div class="pad">
+        <div class="top">
+          <div class="brand">
+            <div class="logo">S</div>
+            <div>SkynetLabs<small>Copy-Paste Kit</small></div>
+          </div>
+          <div class="pg">Master prompt + reusable skill</div>
+        </div>
+
+        <div class="sec-h">1 · The master prompt (paste into Claude Code)</div>
+        <div class="prompt">
+          <span class="lbl">▸ paste this, swap the brackets</span> You are my
+          video editor. Edit <b>raw/[CLIP].mp4</b> into a
+          <b>[9:16 / 16:9]</b> [TikTok/YouTube] video, target
+          <b>[30–45s]</b>.<br /><br />
+          Pipeline: transcribe → cut dead air → reframe face-safe → colour grade
+          → burn captions + a hook card → optional VO + ducked music → render →
+          pull 6 sample frames and QA (face never cropped, captions synced, no
+          black frames). Fix issues and re-render.<br /><br />
+          Use ffmpeg. Read CLAUDE.md for my style rules. Show me each command
+          before the final render. Output to <b>out/</b>.
+        </div>
+
+        <div class="sec-h sm">
+          2 · Your CLAUDE.md style rules (the "training")
+        </div>
+        <div class="code claude">
+          <span class="c1"># Video Editing Rules</span>
+          <span class="k">Export:</span> 1080x1920 (9:16) or 1920x1080 (16:9),
+          30fps, H.264, yuv420p. <span class="k">Encoder:</span> try h264_nvenc;
+          if it errors, fall back to libx264 -crf 18.
+          <span class="k">Face rule:</span> never crop through the speaker's
+          face. Keep head in frame. <span class="k">Captions:</span> bold,
+          bottom third, high contrast, 2-4 words per line.
+          <span class="k">Brand:</span> accent = orange #ef7a52 + green #34d399.
+          Font = Archivo Black for titles. <span class="k">Audio:</span> music
+          ducks ~12dB under voice. Normalise to -14 LUFS.
+          <span class="k">Overlays:</span> PNG only (alpha .mov fails on this
+          machine). <span class="k">QA:</span> before "done", pull sample frames
+          and verify face + captions + no black frames.
+        </div>
+
+        <div class="sec-h sm">
+          3 · Make it a reusable Skill (so you never re-type)
+        </div>
+        <p class="lead">
+          Save the prompt + rules as a Skill and trigger it by name forever.
+          Drop this in
+          <code
+            style="font-family: &quot;JetBrains Mono&quot;; color: var(--codex)"
+            >~/.claude/skills/video-edit/SKILL.md</code
+          >:
+        </p>
+        <div class="code">
+          <span class="c1">---</span> <span class="k">name:</span> video-edit
+          <span class="k">description:</span>
+          <span class="s"
+            >Edit a raw clip into a platform-ready reel — cut,</span
+          >
+          <span class="s"
+            >reframe, grade, caption, voiceover, render + QA. Trigger on</span
+          >
+          <span class="s"
+            >"edit this video", "make a reel", "/video-edit".</span
+          >
+          <span class="c1">---</span>
+          <span class="c1"
+            ># then paste the 7-step pipeline + CLAUDE.md rules here</span
+          >
+        </div>
+        <div class="callout">
+          <div class="q">Now it's one command</div>
+          <p>
+            Type <b>/video-edit</b> + drop a clip. Claude runs the whole
+            pipeline with your rules baked in. That's a $0, repeatable editing
+            bay that never forgets your style.
+          </p>
+        </div>
+
+        <div class="cta">
+          <div>
+            <div class="big">Prompt → rules → skill.</div>
+            <div class="sm">
+              Last page: ffmpeg recipes + the traps that waste hours.
+            </div>
+          </div>
+          <div class="stamp">page 4 / 5</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PAGE 5 — RECIPES + GOTCHAS + CTA ===================== -->
+    <div class="page">
+      <div class="pad">
+        <div class="top">
+          <div class="brand">
+            <div class="logo">S</div>
+            <div>SkynetLabs<small>Recipes &amp; Gotchas</small></div>
+          </div>
+          <div class="pg">Steal these directly</div>
+        </div>
+
+        <div class="sec-h">ffmpeg recipes — copy/paste</div>
+        <div class="code">
+          <span class="c1"># Vertical 9:16 crop, centred on subject</span>
+          ffmpeg -i raw/in.mp4 -vf
+          <span class="s">"scale=-1:1920,crop=1080:1920"</span> out/vert.mp4
+
+          <span class="c1"># Quick cinematic colour grade</span>
+          ffmpeg -i in.mp4 -vf
+          <span class="s"
+            >"eq=contrast=1.08:saturation=1.15:brightness=0.02"</span
+          >
+          graded.mp4
+
+          <span class="c1"># Burn captions into the video</span>
+          ffmpeg -i in.mp4 -vf
+          <span class="s">"subtitles=captions.ass"</span> captioned.mp4
+
+          <span class="c1"># Duck music under the voiceover (sidechain)</span>
+          ffmpeg -i music.mp3 -i vo.wav -filter_complex \
+          <span class="s"
+            >"[0:a][1:a]sidechaincompress=threshold=0.03:ratio=8[a]"</span
+          >
+          -map <span class="s">"[a]"</span> mix.wav
+
+          <span class="c1"># Trim dead air (keep 4.0s–32.5s)</span>
+          ffmpeg -ss 4.0 -to 32.5 -i in.mp4 -c copy clip.mp4
+
+          <span class="c1"
+            ># Final render — NVENC with safe libx264 fallback</span
+          >
+          ffmpeg -i edit.mp4 -c:v h264_nvenc -b:v 10M -pix_fmt yuv420p final.mp4
+          \
+          <span class="c1"># if NVENC errors:</span> -c:v libx264 -crf 18
+          -preset slow
+        </div>
+
+        <div class="sec-h sm">The traps that waste hours</div>
+        <div class="trap">
+          <table>
+            <tr>
+              <th>Trap</th>
+              <th>What happens</th>
+              <th>Fix</th>
+            </tr>
+            <tr>
+              <td><b>NVENC fails</b></td>
+              <td>GPU encoder errors / green frames on some machines</td>
+              <td>Fall back to <code>libx264 -crf 18</code></td>
+            </tr>
+            <tr>
+              <td><b>Alpha .mov overlay</b></td>
+              <td>Transparent video silently drops — overlay vanishes</td>
+              <td>Export overlay as <code>PNG</code> and overlay that</td>
+            </tr>
+            <tr>
+              <td><b>Face cropped</b></td>
+              <td>9:16 crop cuts through the speaker's head</td>
+              <td>Off-centre the subject; QA frames before done</td>
+            </tr>
+            <tr>
+              <td><b>Captions drift</b></td>
+              <td>Subtitles slip out of sync after a trim</td>
+              <td>
+                Caption
+                <i style="color: var(--claude); font-style: normal">after</i>
+                cutting, not before
+              </td>
+            </tr>
+            <tr>
+              <td><b>Loud music</b></td>
+              <td>Music buries the voice</td>
+              <td>Sidechain duck ~12dB + normalise -14 LUFS</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="sec-h sm">Which AI to open — by job</div>
         <div class="cols">
           <div class="col c">
             <h3>Reach for Claude Code</h3>
             <ul>
-              <li>Multi-file builds &amp; refactors</li>
+              <li>Driving the full video pipeline</li>
               <li>Automations: n8n, GoHighLevel, MCP</li>
-              <li>Wiring APIs &amp; backend logic</li>
-              <li>Long tasks that need to hold context</li>
+              <li>Multi-file builds &amp; refactors</li>
               <li>Anything you'll ship to a client</li>
             </ul>
           </div>
@@ -602,22 +1130,23 @@
               <li>Graphic design &amp; image generation</li>
               <li>Fast one-off creative drafts</li>
               <li>Quick scripts &amp; snippets</li>
-              <li>Brainstorming visual concepts</li>
-              <li>When you want speed over depth</li>
+              <li>Speed over depth</li>
             </ul>
           </div>
         </div>
 
         <div class="cta">
           <div>
-            <div class="big">Want builds like this for your business?</div>
+            <div class="big">
+              Want builds &amp; edits like this done for you?
+            </div>
             <div class="sm">
-              AI agents, automations &amp; sites — DM
+              AI agents, automations, sites &amp; reels — DM
               <span class="handle">@SkynetLabs</span> · comment
               <b style="color: var(--gold)">STACK</b> for more.
             </div>
           </div>
-          <div class="stamp">skynetlabs<br />v1 · 2026</div>
+          <div class="stamp">skynetlabs<br />v2 · 2026 · page 5 / 5</div>
         </div>
       </div>
     </div>
