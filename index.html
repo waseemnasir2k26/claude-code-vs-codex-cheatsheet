@@ -567,6 +567,11 @@
         .page {
           margin: 0;
           box-shadow: none;
+          height: 1122px;
+          min-height: 0;
+          overflow: hidden;
+        }
+        .page:not(:last-child) {
           break-after: page;
         }
       }
